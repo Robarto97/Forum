@@ -18,5 +18,6 @@ public class TopicDto {
     private Date createdAt;
     private Date modifiedAt;
     private Long userId;
+    private int seenCounter;
 
 }

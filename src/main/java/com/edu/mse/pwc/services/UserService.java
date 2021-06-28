@@ -37,4 +37,10 @@ public class UserService {
         return userMapper.userEntityToDto(byId.get());
     }
 
+    public UserEntity getUserByUsername(String username) throws IllegalArgumentException {
+        UserEntity user = userRepository
+                .findByUsername(username)
+                .orElseThrow(() -> new IllegalArgumentException("No such user " + username));
+        return user;
+    }
 }

@@ -1,9 +1,11 @@
 package com.edu.mse.pwc.controllers;
 
+import com.edu.mse.pwc.dtos.Counter;
 import com.edu.mse.pwc.dtos.TopicDto;
 import com.edu.mse.pwc.persistence.entities.Role;
 import com.edu.mse.pwc.services.TopicService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,11 +41,9 @@ public class TopicController {
         return topicService.createTopic(topic);
     }
 
-//    @ExceptionHandler(value = {TopicNotFoundException.class, ReplyNotFoundException.class})
-//    protected ResponseEntity<ErrorDto> handleException(Exception e) {
-//        ErrorDto build = ErrorDto.builder().message(e.getMessage()).build();
-//        ResponseEntity<ErrorDto> error = new ResponseEntity<>(build, HttpStatus.INTERNAL_SERVER_ERROR);
-//        return error;
-//    }
-
+    @GetMapping("/saw/{userId}/{topicId}/")
+    public Counter<TopicDto> userSawTopic(@PathVariable long userId, @PathVariable long topicId) {
+        this.topicService.markTopicAsSeen(userId, topicId);
+        return new Counter<TopicDto>(HttpStatus.OK.value(), "Counted", null);
+    }
 }
