@@ -12,6 +12,7 @@ import java.util.Date;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ReplyDto {
+
     private Long id;
     private Date modifiedAt;
     private String text;

@@ -25,11 +25,6 @@ public class ReplyController {
         return replyService.createReply(reply);
     }
 
-    @GetMapping("/topicId/{topicId}/")
-    public List<ReplyDto> getRepliesForTopic(@PathVariable Long topicId) {
-        return replyService.getRepliesForTopic(topicId);
-    }
-
     @PutMapping("/{replyId}/")
     public ReplyDto updateReply(@PathVariable Long replyId, @RequestBody ReplyDto reply) {
         return replyService.updateReply(replyId, reply);
